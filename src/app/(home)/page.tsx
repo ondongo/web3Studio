@@ -212,7 +212,7 @@ function Studio() {
               lineHeight={"30px"}
               position="absolute"
               bottom="-90%"
-              right="10%"
+              right="12%"
               zIndex={99}
               maxW={"200px"}
             >
@@ -227,7 +227,7 @@ function Studio() {
               lineHeight={"30px"}
               position="absolute"
               bottom="-90%"
-              right="40%"
+              right="42%"
               zIndex={99}
               maxW={"200px"}
             >
