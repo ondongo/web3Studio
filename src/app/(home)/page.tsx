@@ -10,9 +10,10 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useRef } from "react";
 
-
 import AOS from "aos";
 import "aos/dist/aos.css";
+import useWindowSize from "../../hooks/useResize";
+
 function Studio() {
   useEffect(() => {
     AOS.init({
@@ -28,10 +29,10 @@ function Studio() {
   useEffect(() => {
     const handleMouseMove = (e: any) => {
       if (cursorRef.current) {
-        cursorRef.current.style.transform =`translateX(calc(${e.clientX}px - 1.25rem)) translateY(calc(${e.clientY}px - 1.25rem))`;
+        cursorRef.current.style.transform = `translateX(calc(${e.clientX}px - 1.25rem)) translateY(calc(${e.clientY}px - 1.25rem))`;
       }
 
-      console.log("Bougeeeee ici",cursorRef.current)
+      console.log("Bougeeeee ici", cursorRef.current);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -74,6 +75,37 @@ function Studio() {
       ref.current.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  const { width } = useWindowSize();
+
+  if (width === undefined) return null;
+
+  const mobileWidthThreshold = 768;
+  const isMobileOrTablet = width <= mobileWidthThreshold;
+ 
+  if (isMobileOrTablet) {
+    // Affichage d'un message d'avertissement pour les mobiles et tablettes
+    return (
+      <Flex
+        direction="column"
+        align="center"
+        justify="center"
+        height="100vh"
+        bg="blackAlpha.900"
+        color="white"
+      >
+        <Text fontSize="2xl" p={4}>
+          Désolé, ce site n'est pas optimisé pour les appareils mobiles et les
+          tablettes.
+        </Text>
+        <Text fontSize="lg"  p={4}>
+          Veuillez utiliser un ordinateur de bureau pour la meilleure
+          expérience.
+        </Text>
+      </Flex>
+    );
+  }
+
   return (
     <>
       <div id="cursor" className="cursor" ref={cursorRef}>
@@ -84,6 +116,7 @@ function Studio() {
           <div></div>
         </div>
       </div>
+
       <Flex
         minHeight={"250vh"}
         bg={"#000000"}
@@ -254,7 +287,7 @@ function Studio() {
               lineHeight={"30px"}
             >
               Things around crypto, NFTs and web3 as a whole are unbelievably
-              interesting. Unfortunately, the overall usability as well as the
+              Interesting. Unfortunately, the overall usability as well as the
               quality of the UI is often still not up to the task. To achieve
               mass adoption, overcoming those hurdles will be key. And this is
               where our story begins.
@@ -486,8 +519,8 @@ function Studio() {
       <Flex
         gap={"40px"}
         px={"3rem"}
-        data-aos="fade-up"
-        mb={"5rem"}
+        data-aos="zoom-in"
+        mb={"10rem"}
         ref={AboutSectionRef}
       >
         <Image alt="" src="/studioWeb/about1.png" w={"231px"} h={"345px"} />

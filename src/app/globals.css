@@ -42,7 +42,7 @@ body {
   width: 4.5rem;
   height: 4.5rem;
   z-index: 999;
-  pointer-events: none;
+  poInter-events: none;
 }
 
 .cursor div {
